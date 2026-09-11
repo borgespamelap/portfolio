@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<script src="./page-transitions.js"></script>
+<style>
+  body{margin:0;background:#F5F1EA;}
+  html{scroll-behavior:smooth;}
+  ::selection{background:#5B564C;color:#F5F1EA;}
+  a{color:#5B564C;}
+  a:hover{color:#141210;}
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);}
+  .reveal.is-visible{opacity:1; transform:none;}
+  .reveal-img{opacity:0; transform:translateY(26px); clip-path:inset(6% 0 6% 0); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1), clip-path .8s cubic-bezier(.16,1,.3,1);}
+  .reveal-img.is-visible{opacity:1; transform:none; clip-path:inset(0 0 0 0);}
+  @media (max-width:768px){
+    .reveal{transform:translateY(14px);}
+    .reveal-img{transform:translateY(14px);}
+  }
+  .arrow-swap{position:relative; display:inline-block; width:1em; height:1em; vertical-align:middle; overflow:hidden;}
+  .arrow-swap .a-diag, .arrow-swap .a-right{position:absolute; left:0; top:0; transition:opacity .25s ease-out, transform .25s ease-out;}
+  .arrow-swap .a-right{opacity:0; transform:translateX(-3px);}
+  a:hover .arrow-swap .a-diag{opacity:0; transform:translateX(3px);}
+  a:hover .arrow-swap .a-right{opacity:1; transform:translateX(0);}
+  .nav-toggle{display:flex;}
+  .mobile-drawer-backdrop{position:fixed; inset:0; z-index:20; background:#00000066; opacity:0; pointer-events:none; transition:opacity .25s ease-out;}
+  .mobile-drawer-backdrop.open{opacity:1; pointer-events:auto;}
+  .mobile-drawer{display:flex; position:fixed; top:0; right:0; height:100%; width:85%; max-width:360px; background:#141210; z-index:21; transform:translateX(100%); transition:transform .28s ease-out; flex-direction:column; padding:32px 24px; box-sizing:border-box;}
+  .mobile-drawer.open{transform:translateX(0);}
+  .drawer-link{opacity:0; transform:translateX(16px); transition:opacity .3s ease-out, transform .3s ease-out; text-decoration:none;}
+  .mobile-drawer.open .drawer-link{opacity:1; transform:translateX(0);}
+  .mobile-drawer.open .drawer-link:nth-child(1){transition-delay:.08s;}
+  .mobile-drawer.open .drawer-link:nth-child(2){transition-delay:.14s;}
+  .mobile-drawer.open .drawer-link:nth-child(3){transition-delay:.2s;}
+  .container{max-width:1280px; margin:0 auto; padding:0 40px; box-sizing:border-box;}
+  .intro{padding-bottom:40px;}
+  .block{padding-bottom:140px;}
+  .eyebrow{font-family:'Satoshi',sans-serif; font-weight:600; color:#2A2620; font-size:17px; letter-spacing:0.03em; text-transform:uppercase; display:block;}
+  .sec-title{font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(30px,4.4vw,50px); line-height:1.08; letter-spacing:-0.01em; margin:16px 0 0;}
+  .body-txt{font-family:'Plus Jakarta Sans',sans-serif; font-size:19px; line-height:1.6; color:#3A3630; margin:24px 0 0; max-width:940px;}
+  .small-txt{font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; line-height:1.5; color:#8A8479; margin:0;}
+  .img-frame{width:100%; height:auto; display:block; background:#E7E1D6;}
+  .meta-row{display:flex; gap:64px; flex-wrap:wrap;}
+  .grid2{display:grid; grid-template-columns:repeat(2,1fr); gap:24px; align-items:start;}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start;}
+  .stat-box{background:#EAE4D7; border:1px solid #14121015; border-radius:6px; padding:32px 28px;}
+  .feature-title{font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(24px,3vw,34px); letter-spacing:-0.01em; margin:0;}
+  .divider{border-top:1px solid #14121020;}
+  .discovery-row{display:grid; grid-template-columns:1fr 1.2fr; gap:56px; padding:44px 0; border-top:1px solid #14121020;}
+  .decision-row{display:grid; grid-template-columns:1.3fr 1fr auto; gap:40px; align-items:start; padding:40px 0;}
+  @media (max-width:768px){
+    .decision-row{grid-template-columns:1fr; gap:16px;}
+    .discovery-row{grid-template-columns:1fr !important; gap:24px;}
+    .container{padding-left:24px !important; padding-right:24px !important;}
+    .block{padding-bottom:72px !important;}
+    .intro{padding-bottom:28px !important;}
+    .meta-row{flex-direction:column; gap:28px;}
+    .grid2, .grid3{grid-template-columns:1fr !important; gap:32px !important;}
+    .ctx-row{grid-template-columns:1fr !important; gap:8px !important; padding:36px 0 !important;}
+    .priority-row{grid-template-columns:1fr !important; gap:8px !important; padding:20px 0 !important;}
+    .priority-row > div{justify-content:flex-start !important;}
+    .flow-chain{flex-direction:column; align-items:flex-start !important;}
+    .flow-chain > span{transform:rotate(90deg); padding:4px 0 !important;}
+    .context-flow{grid-template-columns:1fr !important;}
+    .context-flow > span{transform:rotate(90deg); justify-self:center; padding:4px 0;}
+    .scope-note{white-space:normal !important;}
+    .cep-imgs > div > div{height:auto !important; width:100% !important;}
+    .cep-imgs img{max-height:420px !important;}
+    .sec-title{font-size:clamp(28px,8vw,40px) !important;}
+    .ctx-row{padding:32px 0 !important;}
+    .token-table-desktop{display:none !important;}
+    .token-table-mobile{display:flex !important;}
+    .comp-card{padding:20px !important;}
+    .comp-card .comp-preview{padding:24px !important;}
+    .comp-card .comp-preview img{max-width:100% !important;}
+  }
+  .token-table-mobile{display:none; flex-direction:column; gap:0;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal-img{transition:none !important; opacity:1 !important; transform:none !important; clip-path:none !important;}
+    .mobile-drawer, .mobile-drawer-backdrop, .drawer-link, .arrow-swap .a-diag, .arrow-swap .a-right{transition:none !important;}
+  }
+  .page-root{transition:opacity .45s cubic-bezier(.4,0,.2,1), transform .45s cubic-bezier(.4,0,.2,1);}
+  .page-root.page-enter, .page-root.page-out{opacity:0; transform:translateY(10px);}
+  @media (prefers-reduced-motion: reduce){ .page-root{transition:none !important;} }
+</style>
+</helmet>
+
+<div class="page-root" style="font-family:'Plus Jakarta Sans',sans-serif; color:#141210; background:#F5F1EA; width:100%; overflow-x:hidden;">
+
+  <nav style="display:flex; justify-content:space-between; align-items:center; padding:24px 40px; position:sticky; top:0; background:#F5F1EAee; backdrop-filter:blur(6px); z-index:10;">
+    <a href="index.html" style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:13px; letter-spacing:0.05em; color:#141210; text-decoration:none;">PÂMELA BORGES</a>
+    <button class="nav-toggle" onClick="{{ toggleMenu }}" aria-label="Abrir menu" style="width:44px; height:44px; align-items:center; justify-content:center; background:none; border:none; padding:0; cursor:pointer;">
+      <div style="width:22px;">
+        <div style="height:1.5px; background:#141210; margin-bottom:6px;"></div>
+        <div style="height:1.5px; background:#141210; width:70%;"></div>
+      </div>
+    </button>
+  </nav>
+  <div class="{{ backdropClass }}" onClick="{{ closeMenu }}"></div>
+  <div class="{{ drawerClass }}">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:56px;">
+      <div style="width:10px; height:10px; background:#5B564C;"></div>
+      <button onClick="{{ closeMenu }}" aria-label="Fechar menu" style="background:none; border:none; padding:8px; cursor:pointer; color:#F5F1EA; font-size:22px; line-height:1;">✕</button>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:28px; flex:1;">
+      <a class="drawer-link" href="index.html#projetos" style="display:flex; align-items:baseline; gap:14px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(26px,7vw,36px); color:#F5F1EA;"><span style="color:#5B564C; font-size:15px;">01</span>PROJETOS ↗</a>
+      <a class="drawer-link" href="index.html#sobre" style="display:flex; align-items:baseline; gap:14px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(26px,7vw,36px); color:#F5F1EA;"><span style="color:#5B564C; font-size:15px;">02</span>SOBRE ↗</a>
+      <a class="drawer-link" href="contato.html" style="display:flex; align-items:baseline; gap:14px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(26px,7vw,36px); color:#F5F1EA;"><span style="color:#5B564C; font-size:15px;">03</span>CONTATO ↗</a>
+    </div>
+  </div>
+
+  <div class="container reveal" style="padding-top:56px; padding-bottom:24px;">
+    <a href="index.html#projetos" style="display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:500; letter-spacing:0.02em; text-decoration:none; color:#5B564C; padding:8px 4px; min-height:36px;" style-hover="color:#D92D20"><span class="arrow-swap" style="transform:scaleX(-1); font-size:16px;"><span class="a-diag">↗</span><span class="a-right">→</span></span>Projetos</a>
+  </div>
+
+  <div class="container intro reveal">
+    <p class="small-txt" style="font-weight:700; color:#141210; margin:0 0 12px;">2026</p>
+    <h1 style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(40px,7vw,80px); line-height:1.02; letter-spacing:-0.02em; margin:0 0 8px;">Redesign do&nbsp;checkout</h1>
+    <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(19px,2.2vw,24px); color:#3A3630; margin:0;">App Pernambucanas</p>
+  </div>
+
+  <div class="container block reveal">
+    <img style="width:100%; height:auto; display:block;" src="assets/frame44-cropped.png" alt="Telas do app Pernambucanas: listagem de produtos, página de produto e carrinho">
+  </div>
+
+  <div class="container block reveal">
+    <div class="ctx-row" style="display:grid; grid-template-columns:28% 1fr; gap:0; align-items:start; padding:56px 0; border-top:1px solid #14121020;">
+      <p style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:clamp(30px,3.2vw,38px); margin:0;">Contexto</p>
+      <div style="max-width:720px;">
+        <p class="body-txt" style="margin-top:0;">Logo após adicionar um produto, o usuário precisava passar por uma etapa de verificação antes de continuar a compra. Após essa etapa, era levado novamente ao carrinho antes de seguir para o checkout.</p>
+        <p class="body-txt">Isso levantou uma dúvida: essa etapa extra era necessária ou havia outras barreiras ao longo da&nbsp;jornada?</p>
+        <div style="max-width:480px; background:#EFEAE0; border:1px solid #14121015; border-radius:8px; padding:24px; margin-top:20px; display:flex; flex-direction:column; align-items:center;">
+          <img style="width:90%; height:auto; display:block;" src="assets/modal-login-crop4.png" alt="Modal de identificação exibido ao clicar em Ver sacola">
+          <p class="small-txt" style="margin-top:14px; align-self:flex-start;">Modal de identificação ao clicar em "Ver sacola".</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ctx-row" style="display:grid; grid-template-columns:28% 1fr; gap:0; align-items:start; padding:56px 0; border-top:1px solid #14121020;">
+      <p style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:clamp(30px,3.2vw,38px); margin:0;">Meu papel</p>
+      <p class="body-txt" style="margin-top:0; max-width:720px;">Conduzi a investigação e o processo de redesign da jornada de compra, passando pela análise do problema, pesquisa, identificação e priorização das fricções, desenho dos fluxos e definição das soluções de&nbsp;UX/UI.</p>
+    </div>
+
+    <div class="ctx-row" style="display:grid; grid-template-columns:28% 1fr; gap:0; align-items:start; padding:56px 0; border-top:1px solid #14121020; border-bottom:1px solid #14121020;">
+      <p style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:clamp(30px,3.2vw,38px); margin:0;">Estratégia</p>
+      <div style="max-width:720px;">
+        <p class="body-txt" style="margin-top:0;">Ampliei a análise para toda a jornada de compra e priorizei as fricções que mais afetavam a continuidade da&nbsp;compra.</p>
+        <div style="display:flex; flex-direction:column; margin-top:28px;">
+          <div style="padding:16px 0; border-top:1px solid #14121015; display:flex; gap:16px; align-items:baseline;"><span class="small-txt" style="font-weight:700; color:#141210;">1</span><p class="small-txt" style="font-size:15px; margin:0;">Mapear as principais fricções ao longo da jornada de compra.</p></div>
+          <div style="padding:16px 0; border-top:1px solid #14121015; display:flex; gap:16px; align-items:baseline;"><span class="small-txt" style="font-weight:700; color:#141210;">2</span><p class="small-txt" style="font-size:15px; margin:0;">Priorizar os problemas que interrompiam ou dificultavam o avanço da compra.</p></div>
+          <div style="padding:16px 0; border-top:1px solid #14121015; display:flex; gap:16px; align-items:baseline;"><span class="small-txt" style="font-weight:700; color:#141210;">3</span><p class="small-txt" style="font-size:15px; margin:0;">Reduzir pontos de incerteza durante a navegação e a finalização.</p></div>
+          <div style="padding:16px 0; border-top:1px solid #14121015; display:flex; gap:16px; align-items:baseline;"><span class="small-txt" style="font-weight:700; color:#141210;">4</span><p class="small-txt" style="font-size:15px; margin:0;">Tornar informações, etapas e ações mais claras para a pessoa usuária.</p></div>
+          <div style="padding:16px 0; border-top:1px solid #14121015; border-bottom:1px solid #14121015; display:flex; gap:16px; align-items:baseline;"><span class="small-txt" style="font-weight:700; color:#141210;">5</span><p class="small-txt" style="font-size:15px; margin:0;">Transformar os achados em decisões de UX e UI aplicáveis ao redesign.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container intro reveal">
+    <h2 class="sec-title">Investiguei se era um problema&nbsp;isolado.</h2>
+  </div>
+  <div class="container block reveal">
+    <div class="meta-row" style="flex-wrap:wrap; gap:32px 56px; padding-bottom:32px; border-bottom:1px solid #14121020;">
+      <div><p class="small-txt" style="font-weight:700; color:#141210;">Reviews e reclamações</p><p class="small-txt" style="margin-top:6px;">Play Store + Reclame Aqui</p></div>
+      <div><p class="small-txt" style="font-weight:700; color:#141210;">Uso do app</p><p class="small-txt" style="margin-top:6px;">Navegação e registros das telas</p></div>
+      <div><p class="small-txt" style="font-weight:700; color:#141210;">Benchmark</p><p class="small-txt" style="margin-top:6px; max-width:340px;">Mercado Livre · Amazon · iFood · Nubank · Renner · Tok&Stok · Magalu</p></div>
+      <div><p class="small-txt" style="font-weight:700; color:#141210;">Boas práticas</p><p class="small-txt" style="margin-top:6px;">Baymard Institute</p></div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <p class="body-txt" style="font-size:16px; margin-top:0; max-width:1100px;">Observei o app e organizei os relatos reais num diagrama de afinidade, agrupando os problemas que mais se repetiam em&nbsp;categorias.</p>
+      <p class="body-txt" style="font-size:16px; max-width:1100px;">Usei as heurísticas de Nielsen e as diretrizes de acessibilidade do WCAG para analisar os problemas encontrados, considerando aspectos como contraste, área de toque e feedback do sistema.</p>
+
+      <div class="grid2" style="margin-top:40px; align-items:start;">
+        <div>
+          <span class="small-txt" style="font-weight:700; color:#141210;">01 · CEP e estoque</span>
+          <img style="width:100%; height:auto; display:block; margin-top:10px;" src="assets/pasted-1788286948674-0.png" alt="Review relatando indisponibilidade por CEP e estoque">
+        </div>
+        <div>
+          <span class="small-txt" style="font-weight:700; color:#141210;">02 · Perda de contexto</span>
+          <img style="width:100%; height:auto; display:block; margin-top:10px;" src="assets/pasted-1788286968810-0.png" alt="Review relatando perda de contexto ao voltar para a busca">
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:20px; align-items:start;">
+        <div style="max-width:80%;">
+          <span class="small-txt" style="font-weight:700; color:#141210;">03 · Interface e adaptação ao celular</span>
+          <img style="width:100%; height:auto; display:block; margin-top:10px;" src="assets/pasted-1788286991999-0.png" alt="Review relatando problema de interface não se adaptar ao celular">
+        </div>
+        <div style="max-width:80%;">
+          <span class="small-txt" style="font-weight:700; color:#141210;">04 · Busca e filtros</span>
+          <img style="width:100%; height:auto; display:block; margin-top:10px;" src="assets/pasted-1788287006869-0.png" alt="Review relatando ausência de busca por tamanho">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container intro reveal">
+    <h2 class="sec-title">O que encontrei</h2>
+    <p class="body-txt" style="max-width:1100px;">Observei o app e cruzei esses achados com os relatos dos usuários para identificar os problemas mais&nbsp;recorrentes.</p>
+  </div>
+  <div class="container block reveal">
+    <div style="display:flex; flex-direction:column;">
+      <div class="discovery-row" style="border-top:1px solid #14121020; grid-template-columns:1fr; padding:32px 0;">
+        <div>
+          <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">01 · Perda de contexto ao voltar</span>
+          <p class="body-txt" style="font-size:16px; margin-top:0; max-width:700px;">Ao voltar da página de produto, o usuário perdia o contexto da navegação e retornava à página inicial em vez de voltar ao ponto&nbsp;anterior.</p>
+          <div class="context-flow" style="display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; gap:16px; margin-top:32px; max-width:820px;">
+            <img style="width:100%; height:auto; display:block; background:none;" src="assets/WhatsApp-Image-2026-08-16-at-09.17.11-1-1.png" alt="Lista de produtos do app Pernambucanas">
+            <span style="font-size:28px; font-weight:700; color:#8A8479; line-height:1;">→</span>
+            <img style="width:100%; height:auto; display:block; background:none;" src="assets/WhatsApp-Image-2026-08-17-at-15.07.44-1-1.png" alt="Página de produto do app Pernambucanas">
+            <span style="font-size:28px; font-weight:700; color:#8A8479; line-height:1;">→</span>
+            <img style="width:100%; height:auto; display:block; background:none;" src="assets/WhatsApp-Image-2026-09-02-at-16.29.47.jpeg" alt="Página inicial do app Pernambucanas, exibida após voltar da página de produto">
+          </div>
+        </div>
+      </div>
+
+      <div class="discovery-row" style="border-top:1px solid #14121020; grid-template-columns:1fr; padding:32px 0;">
+        <div>
+          <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">02 · Duas páginas de carrinho na mesma jornada</span>
+          <p class="body-txt" style="font-size:16px; margin-top:0; max-width:none; white-space:nowrap;">A jornada apresentava duas páginas de carrinho diferentes: uma antes da verificação e outra depois dela, criando uma etapa adicional antes do&nbsp;checkout.</p>
+          <div class="grid2" style="margin-top:32px; align-items:start; max-width:480px; gap:16px;">
+            <img style="width:100%; height:auto; display:block; background:none;" src="assets/WhatsApp-Image-2026-08-16-at-10.53.36-2.png" alt="Carrinho lateral (drawer) do app Pernambucanas">
+            <img style="width:100%; height:auto; display:block; background:none;" src="assets/WhatsApp-Image-2026-08-16-at-09.17.14-3-1.png" alt="Página de carrinho inteira do app Pernambucanas">
+          </div>
+        </div>
+      </div>
+
+      <div class="discovery-row" style="border-bottom:1px solid #14121020; grid-template-columns:1fr 1fr; padding:32px 0;">
+        <div>
+          <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">03 · O aviso de indisponibilidade passa despercebido</span>
+          <p class="body-txt" style="font-size:16px; margin-top:0;">A disponibilidade por CEP só é informada depois que o produto já está no carrinho, e o aviso não recebe destaque suficiente para chamar a atenção do&nbsp;usuário.</p>
+          <img style="width:100%; max-width:300px; height:auto; display:block; background:none; margin-top:32px;" src="assets/WhatsApp-Image-2026-08-16-at-10.52.26-1-648c1a40.png" alt="Aviso de item não entregável no CEP informado, exibido de forma discreta sobre o carrinho">
+        </div>
+        <div>
+          <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">04 · A barra do sistema interfere na interface</span>
+          <p class="body-txt" style="font-size:16px; margin-top:0;">A barra do sistema se sobrepõe a elementos da interface, encobrindo ações importantes e dificultando a interação do usuário com o&nbsp;aplicativo.</p>
+          <img style="width:100%; max-width:300px; height:auto; display:block; background:none; margin-top:32px;" src="assets/WhatsApp-Image-2026-08-16-at-10.57.29-1.png" alt="Botão Finalizar Compra sobreposto pela barra de navegação do sistema">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container intro reveal" style="padding-bottom:56px;">
+    <h2 class="sec-title">O que priorizei no checkout</h2>
+  </div>
+  <div class="container reveal" style="padding-bottom:56px;">
+    <div style="display:flex; flex-direction:column;">
+      <div class="priority-row" style="display:grid; grid-template-columns:auto 1.1fr 1.4fr auto; gap:24px; align-items:baseline; padding:30px 0; border-top:1px solid #14121020;">
+        <span class="small-txt" style="font-weight:700; color:#8A8479;">01</span>
+        <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:16px; letter-spacing:0.02em; text-transform:uppercase;">Perda de contexto</span>
+        <p class="small-txt" style="font-size:15px; margin:0;">A pessoa perde o lugar ao voltar para a busca.</p>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;">
+          <span class="small-txt" style="border:1px solid #14121030; border-radius:20px; padding:4px 10px;">Impacto alto</span>
+          <span class="small-txt" style="border:1px solid #14121030; border-radius:20px; padding:4px 10px;">Esforço médio</span>
+          <span class="small-txt" style="font-weight:700; color:#141210; background:#EAE4D7; border-radius:20px; padding:4px 10px;">Priorizado</span>
+        </div>
+      </div>
+      <div class="priority-row" style="display:grid; grid-template-columns:auto 1.1fr 1.4fr auto; gap:24px; align-items:baseline; padding:30px 0; border-top:1px solid #14121020;">
+        <span class="small-txt" style="font-weight:700; color:#8A8479;">02</span>
+        <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:16px; letter-spacing:0.02em; text-transform:uppercase;">Disponibilidade informada tarde</span>
+        <p class="small-txt" style="font-size:15px; margin:0;">Encontrei relatos sobre problemas de CEP, estoque e entrega. Ao observar o app, percebi que a disponibilidade só ficava clara depois que o produto já estava no carrinho.</p>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;">
+          <span class="small-txt" style="border:1px solid #14121030; border-radius:20px; padding:4px 10px;">Impacto alto</span>
+          <span class="small-txt" style="border:1px solid #14121030; border-radius:20px; padding:4px 10px;">Esforço baixo</span>
+          <span class="small-txt" style="font-weight:700; color:#141210; background:#EAE4D7; border-radius:20px; padding:4px 10px;">Priorizado</span>
+        </div>
+      </div>
+      <div class="priority-row" style="display:grid; grid-template-columns:auto 1.1fr 1.4fr auto; gap:24px; align-items:baseline; padding:30px 0; border-top:1px solid #14121020; border-bottom:1px solid #14121020;">
+        <span class="small-txt" style="font-weight:700; color:#8A8479;">03</span>
+        <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:16px; letter-spacing:0.02em; text-transform:uppercase;">Barra do sistema sobreposta à interface</span>
+        <p class="small-txt" style="font-size:15px; margin:0;">Na análise das telas, identifiquei elementos interativos parcialmente encobertos pela barra do sistema.</p>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end;">
+          <span class="small-txt" style="border:1px solid #14121030; border-radius:20px; padding:4px 10px;">Impacto médio</span>
+          <span class="small-txt" style="border:1px solid #14121030; border-radius:20px; padding:4px 10px;">Esforço baixo</span>
+          <span class="small-txt" style="font-weight:700; color:#141210; background:#EAE4D7; border-radius:20px; padding:4px 10px;">Priorizado</span>
+        </div>
+      </div>
+    </div>
+    <p class="small-txt scope-note" style="margin-top:24px; max-width:none; white-space:nowrap;">Fora do escopo: filtro de tamanho na categoria de roupa, com impacto menor que os três problemas acima.</p>
+  </div>
+
+
+  <div class="container intro reveal">
+    <h2 class="sec-title">Decisões que guiaram o&nbsp;redesign</h2>
+  </div>
+  <div class="container block reveal">
+    <div style="display:flex; flex-direction:column;">
+      <div style="padding:28px 0 40px; border-top:1px solid #14121020;">
+        <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">01 · Reorganizando o fluxo do carrinho</span>
+        <p class="body-txt" style="font-size:16px; margin-top:28px; max-width:700px;">O fluxo anterior fazia o usuário voltar ao carrinho após a verificação, adicionando uma etapa desnecessária à jornada e criando mais um ponto de interrupção antes da compra. No redesign, eliminei esse retorno para tornar a finalização mais&nbsp;direta.</p>
+
+        <div style="margin-top:40px;">
+          <span class="small-txt" style="font-weight:700; color:#141210; letter-spacing:0.04em;">ANTES</span>
+          <div class="flow-chain" style="display:flex; align-items:center; flex-wrap:wrap; gap:0; margin-top:12px;">
+            <div style="border:1px solid #14121020; background:#F5F1EA; border-radius:8px; padding:14px 20px; font-size:15px;">Página do produto</div>
+            <span style="color:#8A8479; padding:0 12px; font-size:18px;">→</span>
+            <div style="border:1px solid #14121020; background:#F5F1EA; border-radius:8px; padding:14px 20px; font-size:15px;">Carrinho</div>
+            <span style="color:#8A8479; padding:0 12px; font-size:18px;">→</span>
+            <div style="border:1px solid #D9B44A; background:#FCEFC7; border-radius:8px; padding:14px 20px; font-size:15px; font-weight:700;">Verificação</div>
+            <span style="color:#D9B44A; padding:0 12px; font-weight:700; font-size:18px;">→</span>
+            <div style="border:1px solid #D9B44A; background:#FCEFC7; border-radius:8px; padding:14px 20px; font-size:15px; font-weight:700;">Carrinho novamente</div>
+            <span style="color:#8A8479; padding:0 12px; font-size:18px;">→</span>
+            <div style="border:1px solid #14121020; background:#F5F1EA; border-radius:8px; padding:14px 20px; font-size:15px;">Checkout</div>
+          </div>
+        </div>
+
+        <div style="margin-top:40px;">
+          <span class="small-txt" style="font-weight:700; color:#141210; letter-spacing:0.04em;">DEPOIS</span>
+          <div class="flow-chain" style="display:flex; align-items:center; flex-wrap:wrap; gap:10px 0; margin-top:12px;">
+            <div style="border:1px solid #14121020; background:#F5F1EA; border-radius:8px; padding:12px 16px; font-size:14px;">Página do produto</div>
+            <span style="color:#8A8479; padding:0 10px; font-size:16px;">→</span>
+            <div style="border:1px solid #14121020; background:#F5F1EA; border-radius:8px; padding:12px 16px; font-size:14px;">Carrinho</div>
+            <span style="color:#8A8479; padding:0 10px; font-size:16px;">→</span>
+            <div style="border:1px solid #14121020; background:#F5F1EA; border-radius:8px; padding:12px 16px; font-size:14px;">Verificação (se necessário)</div>
+            <span style="color:#8A8479; padding:0 10px; font-size:16px;">→</span>
+            <div style="border:1px solid #14121020; background:#F5F1EA; border-radius:8px; padding:12px 16px; font-size:14px;">Entrega</div>
+            <span style="color:#8A8479; padding:0 10px; font-size:16px;">→</span>
+            <div style="border:1px solid #14121020; background:#F5F1EA; border-radius:8px; padding:12px 16px; font-size:14px;">Pagamento</div>
+            <span style="color:#8A8479; padding:0 10px; font-size:16px;">→</span>
+            <div style="border:1px solid #14121020; background:#F5F1EA; border-radius:8px; padding:12px 16px; font-size:14px;">Finalização</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:40px 0; border-top:1px solid #14121020;">
+        <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">02 · Perda de contexto</span>
+        <p class="body-txt" style="font-size:16px; margin-top:0; max-width:none; white-space:nowrap;">Para evitar a perda de contexto relatada pelos usuários, mantive a posição e os filtros da busca ao retornar.</p>
+        <div class="context-flow" style="display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; gap:16px; margin-top:36px;">
+          <img style="width:100%; height:auto; display:block; background:none;" src="assets/01.01-Listagem-de-produtos-4-.png" alt="Lista de produtos">
+          <span style="font-size:36px; font-weight:700; color:#8A8479; line-height:1;">→</span>
+          <img style="width:100%; height:auto; display:block; background:none;" src="assets/02.01-Detalhe-do-produto-1-.png" alt="Página de detalhe do produto">
+          <span style="font-size:36px; font-weight:700; color:#8A8479; line-height:1;">→</span>
+          <img style="width:100%; height:auto; display:block; background:none;" src="assets/01.01-Listagem-de-produtos-4-.png" alt="Lista de produtos novamente, retornando ao ponto de origem">
+        </div>
+      </div>
+
+      <div style="padding:40px 0; border-top:1px solid #14121020;">
+        <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">03 · Disponibilidade por CEP</span>
+        <p class="body-txt" style="font-size:16px; margin-top:0; max-width:700px;">Tornei a disponibilidade por CEP mais&nbsp;clara.</p>
+
+        <div class="grid3 cep-imgs" style="margin-top:36px; align-items:start;">
+          <div style="display:flex; flex-direction:column; align-items:flex-start;">
+            <div style="height:680px; width:320px; max-width:100%; display:flex; align-items:flex-end; justify-content:center; overflow:hidden;">
+              <img style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block; background:none;" src="assets/ProductCard-1-.png" alt="Card de produto exibindo indisponibilidade e opção de alterar CEP">
+            </div>
+            <p class="small-txt" style="margin-top:12px;"><span style="font-weight:700; color:#141210; display:block; margin-bottom:4px;">Disponibilidade no produto</span>CEP considerado antes da compra.</p>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:flex-start;">
+            <div style="height:680px; width:320px; max-width:100%; display:flex; align-items:flex-end; justify-content:center; overflow:hidden;">
+              <img style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block; background:none;" src="assets/03.02-Carrinho-alterar-CEP-MODAL-2-.png" alt="Modal Alterar CEP de entrega dentro do carrinho">
+            </div>
+            <p class="small-txt" style="margin-top:12px;"><span style="font-weight:700; color:#141210; display:block; margin-bottom:4px;">Alteração do CEP no carrinho</span>Atualização sem interromper a jornada.</p>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:flex-start;">
+            <div style="height:680px; width:320px; max-width:100%; display:flex; align-items:flex-end; justify-content:center; overflow:hidden;">
+              <img style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block; background:none;" src="assets/Revise-a-forma-de-entrega-e0ffc1ad.png" alt="Modal Revise a forma de entrega, com opções de retirar na loja, alterar CEP ou remover produto">
+            </div>
+            <p class="small-txt" style="margin-top:12px;"><span style="font-weight:700; color:#141210; display:block; margin-bottom:4px;">Alternativas de entrega</span>Indisponibilidade acompanhada de opções.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:40px 0; border-top:1px solid #14121020; border-bottom:1px solid #14121020;">
+        <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">04 · Área segura e ações importantes</span>
+        <p class="body-txt" style="font-size:16px; margin-top:0; max-width:none; white-space:nowrap;">O design passou a considerar a área reservada pelo sistema, mantendo ações importantes acessíveis.</p>
+        <div class="grid2" style="margin-top:36px; max-width:480px; gap:24px;">
+          <div>
+            <span class="small-txt" style="font-weight:700; color:#141210;">ANTES</span>
+            <img style="width:100%; height:auto; display:block; background:none; margin-top:12px;" src="assets/WhatsApp-Image-2026-08-16-at-10.57.29-1.png" alt="Antes: botão Finalizar Compra cortado pela barra de gestos do Android">
+          </div>
+          <div>
+            <span class="small-txt" style="font-weight:700; color:#141210;">DEPOIS</span>
+            <img style="width:100%; height:auto; display:block; background:none; margin-top:12px;" src="assets/03.01-Carrinho-com-produtos-3-.png" alt="Depois: botão Finalizar compra posicionado dentro da área segura">
+          </div>
+        </div>
+        <p class="small-txt" style="margin-top:20px; max-width:none; white-space:nowrap;">A área do sistema não é controlada pelo design, mas a solução evita que ações importantes fiquem encobertas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container intro reveal">
+    <h2 class="sec-title">Sistema visual</h2>
+    <p class="body-txt">Também reorganizei as cores da marca para separar identidade de&nbsp;ação.</p>
+  </div>
+  <div class="container block reveal">
+    <p class="small-txt" style="font-weight:700; color:#141210; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:16px;">Tokens</p>
+    <div class="token-table-desktop" style="border:1px solid #14121020; border-radius:8px; overflow:hidden;">
+      <div style="display:grid; grid-template-columns:0.8fr 1fr 0.9fr 1.3fr 1fr; gap:16px; padding:14px 20px; background:#EFEAE0;">
+        <span class="small-txt" style="font-weight:700; letter-spacing:0.04em; font-size:12px;">TOKEN</span>
+        <span class="small-txt" style="font-weight:700; letter-spacing:0.04em; font-size:12px;">COR</span>
+        <span class="small-txt" style="font-weight:700; letter-spacing:0.04em; font-size:12px;">NOME</span>
+        <span class="small-txt" style="font-weight:700; letter-spacing:0.04em; font-size:12px;">USO</span>
+        <span class="small-txt" style="font-weight:700; letter-spacing:0.04em; font-size:12px;">RESULTADO</span>
+      </div>
+      <div style="display:grid; grid-template-columns:0.8fr 1fr 0.9fr 1.3fr 1fr; gap:16px; padding:16px 20px; align-items:center; border-top:1px solid #14121015;">
+        <span class="small-txt">Primary</span>
+        <span style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#1A285B; display:inline-block;"></span><span class="small-txt" style="font-weight:700;">#1A285B</span></span>
+        <span class="small-txt">Navy</span>
+        <span class="small-txt">Ações principais</span>
+        <span style="display:inline-flex; align-items:center; padding:8px 16px; border-radius:8px; background:#1A285B; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:13px; width:fit-content;">Adicionar à sacola</span>
+      </div>
+      <div style="display:grid; grid-template-columns:0.8fr 1fr 0.9fr 1.3fr 1fr; gap:16px; padding:16px 20px; align-items:center; border-top:1px solid #14121015;">
+        <span class="small-txt">Accent</span>
+        <span style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#F7DC16; display:inline-block; border:1px solid #14121015;"></span><span class="small-txt" style="font-weight:700;">#F7DC16</span></span>
+        <span class="small-txt">Yellow</span>
+        <span class="small-txt">Destaques</span>
+        <img src="assets/Text-2-.png" alt="Tag 10% OFF" style="height:28px; width:auto;">
+      </div>
+      <div style="display:grid; grid-template-columns:0.8fr 1fr 0.9fr 1.3fr 1fr; gap:16px; padding:16px 20px; align-items:center; border-top:1px solid #14121015;">
+        <span class="small-txt">Danger</span>
+        <span style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#E51717; display:inline-block;"></span><span class="small-txt" style="font-weight:700;">#E51717</span></span>
+        <span class="small-txt">Danger</span>
+        <span class="small-txt">Erro, indisponibilidade</span>
+        <span class="small-txt" style="color:#E51717; font-weight:700;">Indisponível</span>
+      </div>
+      <div style="display:grid; grid-template-columns:0.8fr 1fr 0.9fr 1.3fr 1fr; gap:16px; padding:16px 20px; align-items:center; border-top:1px solid #14121015;">
+        <span class="small-txt">Success</span>
+        <span style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#167135; display:inline-block;"></span><span class="small-txt" style="font-weight:700;">#167135</span></span>
+        <span class="small-txt">Success</span>
+        <span class="small-txt">Confirmação</span>
+        <span class="small-txt" style="color:#167135; font-weight:700;">Disponível</span>
+      </div>
+      <div style="display:grid; grid-template-columns:0.8fr 1fr 0.9fr 1.3fr 1fr; gap:16px; padding:16px 20px; align-items:center; border-top:1px solid #14121015;">
+        <span class="small-txt">Warning</span>
+        <span style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#D77D10; display:inline-block;"></span><span class="small-txt" style="font-weight:700;">#D77D10</span></span>
+        <span class="small-txt">Warning</span>
+        <span class="small-txt">Alerta, atenção</span>
+        <img src="assets/Text-3-.png" alt="Tag Estoque baixo" style="height:28px; width:auto;">
+      </div>
+      <div style="display:grid; grid-template-columns:0.8fr 1fr 0.9fr 1.3fr 1fr; gap:16px; padding:16px 20px; align-items:center; border-top:1px solid #14121015;">
+        <span class="small-txt">Action</span>
+        <span style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#2485EA; display:inline-block;"></span><span class="small-txt" style="font-weight:700;">#2485EA</span></span>
+        <span class="small-txt">Action / Link</span>
+        <span class="small-txt">Links e ações secundárias</span>
+        <span class="small-txt" style="color:#2485EA; font-weight:700; text-decoration:underline;">Alterar CEP</span>
+      </div>
+      <div style="display:grid; grid-template-columns:0.8fr 1fr 0.9fr 1.3fr 1fr; gap:16px; padding:16px 20px; align-items:center; border-top:1px solid #14121015;">
+        <span class="small-txt">Disabled</span>
+        <span style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#C7CCD1; display:inline-block; border:1px solid #14121015;"></span><span class="small-txt" style="font-weight:700;">#C7CCD1</span></span>
+        <span class="small-txt">Primary Disabled</span>
+        <span class="small-txt">Ações inativas</span>
+        <span style="display:inline-flex; align-items:center; padding:8px 16px; border-radius:8px; background:#C7CCD1; color:#7A8085; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:13px; width:fit-content;">Adicionar à sacola</span>
+      </div>
+    </div>
+
+    <div class="token-table-mobile">
+      <div style="border-top:1px solid #14121020; padding:16px 0; display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#1A285B; display:inline-block;"></span><span class="small-txt" style="font-weight:700; color:#141210;">Primary · Navy</span><span class="small-txt" style="font-weight:700;">#1A285B</span></div>
+        <p class="small-txt" style="margin:0;">Ações principais</p>
+        <span style="display:inline-flex; align-items:center; padding:8px 16px; border-radius:8px; background:#1A285B; color:#fff; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:13px; width:fit-content;">Adicionar à sacola</span>
+      </div>
+      <div style="border-top:1px solid #14121020; padding:16px 0; display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#F7DC16; display:inline-block; border:1px solid #14121015;"></span><span class="small-txt" style="font-weight:700; color:#141210;">Accent · Yellow</span><span class="small-txt" style="font-weight:700;">#F7DC16</span></div>
+        <p class="small-txt" style="margin:0;">Destaques</p>
+        <img src="assets/Text-2-.png" alt="Tag 10% OFF" style="height:28px; width:auto;">
+      </div>
+      <div style="border-top:1px solid #14121020; padding:16px 0; display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#E51717; display:inline-block;"></span><span class="small-txt" style="font-weight:700; color:#141210;">Danger</span><span class="small-txt" style="font-weight:700;">#E51717</span></div>
+        <p class="small-txt" style="margin:0;">Erro, indisponibilidade</p>
+        <span class="small-txt" style="color:#E51717; font-weight:700;">Indisponível</span>
+      </div>
+      <div style="border-top:1px solid #14121020; padding:16px 0; display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#167135; display:inline-block;"></span><span class="small-txt" style="font-weight:700; color:#141210;">Success</span><span class="small-txt" style="font-weight:700;">#167135</span></div>
+        <p class="small-txt" style="margin:0;">Confirmação</p>
+        <span class="small-txt" style="color:#167135; font-weight:700;">Disponível</span>
+      </div>
+      <div style="border-top:1px solid #14121020; padding:16px 0; display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#D77D10; display:inline-block;"></span><span class="small-txt" style="font-weight:700; color:#141210;">Warning</span><span class="small-txt" style="font-weight:700;">#D77D10</span></div>
+        <p class="small-txt" style="margin:0;">Alerta, atenção</p>
+        <img src="assets/Text-3-.png" alt="Tag Estoque baixo" style="height:28px; width:auto;">
+      </div>
+      <div style="border-top:1px solid #14121020; padding:16px 0; display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#2485EA; display:inline-block;"></span><span class="small-txt" style="font-weight:700; color:#141210;">Action / Link</span><span class="small-txt" style="font-weight:700;">#2485EA</span></div>
+        <p class="small-txt" style="margin:0;">Links e ações secundárias</p>
+        <span class="small-txt" style="color:#2485EA; font-weight:700; text-decoration:underline;">Alterar CEP</span>
+      </div>
+      <div style="border-top:1px solid #14121020; border-bottom:1px solid #14121020; padding:16px 0; display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; align-items:center; gap:8px;"><span style="width:14px; height:14px; border-radius:3px; background:#C7CCD1; display:inline-block; border:1px solid #14121015;"></span><span class="small-txt" style="font-weight:700; color:#141210;">Primary Disabled</span><span class="small-txt" style="font-weight:700;">#C7CCD1</span></div>
+        <p class="small-txt" style="margin:0;">Ações inativas</p>
+        <span style="display:inline-flex; align-items:center; padding:8px 16px; border-radius:8px; background:#C7CCD1; color:#7A8085; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:13px; width:fit-content;">Adicionar à sacola</span>
+      </div>
+    </div>
+
+    <p class="small-txt" style="font-weight:700; color:#141210; text-transform:uppercase; letter-spacing:0.04em; margin:48px 0 16px;">Componentes</p>
+    <div class="grid2" style="gap:24px; align-items:stretch;">
+      <div class="comp-card" style="border:1px solid #14121020; border-radius:8px; padding:28px; display:flex; flex-direction:column;">
+        <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:17px; margin:0 0 20px;">Botão · Primary</p>
+        <div class="comp-preview" style="background:#F0F2F8; border-radius:6px; padding:40px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+          <img src="assets/State-Default-Size-Medium-Type-Primary-237d9ca0.png" alt="Botão Adicionar à sacola" style="height:auto; max-width:220px;">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; margin-top:auto;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">cor</span><span class="small-txt" style="font-weight:700; color:#141210;">Navy · #1A285B</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">raio</span><span class="small-txt" style="font-weight:700; color:#141210;">8px</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">padding</span><span class="small-txt" style="font-weight:700; color:#141210;">16px</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">text style</span><span class="small-txt" style="font-weight:700; color:#141210;">Label · Medium</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">fonte</span><span class="small-txt" style="font-weight:700; color:#141210;">Roboto</span></div>
+        </div>
+      </div>
+      <div class="comp-card" style="border:1px solid #14121020; border-radius:8px; padding:28px; display:flex; flex-direction:column;">
+        <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:17px; margin:0 0 20px;">Input · CEP</p>
+        <div class="comp-preview" style="background:#F0F2F8; border-radius:6px; padding:40px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+          <img src="assets/State-Default-2-.png" alt="Input de CEP com estado de erro" style="height:auto; max-width:220px;">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; margin-top:auto;">
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">Texto</span><span class="small-txt" style="font-weight:700; color:#141210;">Neutral 5 · #74808B</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">Borda</span><span class="small-txt" style="font-weight:700; color:#141210;">Neutral 3 · #C7CCD1</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">Raio</span><span class="small-txt" style="font-weight:700; color:#141210;">8px</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">Padding</span><span class="small-txt" style="font-weight:700; color:#141210;">14px / 12px</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">Tipografia</span><span class="small-txt" style="font-weight:700; color:#141210;">Body · Regular</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px;"><span class="small-txt">Fonte</span><span class="small-txt" style="font-weight:700; color:#141210;">Roboto</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container intro reveal">
+    <h2 class="sec-title">Disponibilidade por&nbsp;produto</h2>
+    <p class="body-txt">Desenvolvi as telas para que cada produto tivesse suas próprias opções de entrega ou retirada, de acordo com o CEP&nbsp;informado.</p>
+  </div>
+  <div class="container block reveal" style="padding-top:40px;">
+    <div class="grid3" style="align-items:start;">
+      <div>
+        <span class="small-txt" style="font-weight:700; color:#141210; display:block; margin-bottom:10px;">01 · Escolha por produto</span>
+        <img style="width:100%; height:auto; display:block;" src="assets/Entrega.png" alt="Escolha entre receber em casa ou retirar na loja para o Produto 1, com Produto 2 aparecendo abaixo">
+      </div>
+      <div>
+        <span class="small-txt" style="font-weight:700; color:#141210; display:block; margin-bottom:10px;">02 · Visão geral da entrega</span>
+        <img style="width:100%; height:auto; display:block;" src="assets/Entrega-padrao-df3f66e6.png" alt="Tela inicial de Entrega com CEP, endereço e produto 1">
+      </div>
+      <div>
+        <span class="small-txt" style="font-weight:700; color:#141210; display:block; margin-bottom:10px;">03 · Indisponibilidade resolvida</span>
+        <img style="width:100%; height:auto; display:block;" src="assets/Entrega-7-.png" alt="Produto 2 sem entrega em casa disponível, com opções de retirada em loja">
+      </div>
+    </div>
+  </div>
+
+  <div class="container intro reveal">
+    <h2 class="sec-title">O que aprendi com o&nbsp;processo</h2>
+  </div>
+  <div class="container block reveal">
+    <div class="grid3">
+      <div><span class="small-txt" style="font-weight:700; color:#8A8479;">01</span><p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:17px; line-height:1.3; margin:10px 0 0;">Disponibilidade no momento certo</p><p class="small-txt" style="margin-top:10px;">Ao levar a verificação de CEP para o produto, percebi que uma informação que já existia no fluxo poderia evitar uma fricção se aparecesse antes.</p></div>
+      <div><span class="small-txt" style="font-weight:700; color:#8A8479;">02</span><p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:17px; line-height:1.3; margin:10px 0 0;">Limites da pesquisa com dados públicos</p><p class="small-txt" style="margin-top:10px;">Reviews e reclamações ajudaram a encontrar problemas recorrentes, mas algumas questões só poderiam ser confirmadas com dados internos da empresa.</p></div>
+      <div><span class="small-txt" style="font-weight:700; color:#8A8479;">03</span><p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:17px; line-height:1.3; margin:10px 0 0;">Ainda preciso validar com usuários</p><p class="small-txt" style="margin-top:10px;">As mudanças foram baseadas nos achados da pesquisa e na análise do app, mas ainda precisam ser testadas com usuários para entender se realmente melhoram a jornada.</p></div>
+    </div>
+  </div>
+
+  <div class="container reveal divider" style="padding-bottom:80px; padding-top:40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;">
+    <a href="index.html#projetos" style="display:inline-flex; align-items:center; gap:8px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:16px; text-decoration:none; color:#141210;" style-hover="color:#5B564C"><span class="arrow-swap" style="transform:scaleX(-1);"><span class="a-diag">↗</span><span class="a-right">→</span></span>Voltar para projetos</a>
+    <a href="lacrei-saude.html" style="display:inline-flex; align-items:center; gap:8px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:16px; text-decoration:none; color:#141210;" style-hover="color:#5B564C">Próximo projeto <span class="arrow-swap"><span class="a-diag">↗</span><span class="a-right">→</span></span></a>
+  </div>
+
+  <div class="container" style="padding-bottom:48px; font-size:12px; color:#8A8479;">© 2026 Pâmela Borges.</div>
+
+  <button onClick="{{ scrollTop }}" aria-label="Voltar ao topo" style="position:fixed; right:24px; bottom:24px; width:48px; height:48px; border-radius:50%; border:1px solid #14121030; background:#F5F1EA; color:#141210; font-size:18px; cursor:pointer; z-index:40; transition:border-color .2s ease-out, color .2s ease-out;" style-hover="border-color:#D92D20;color:#D92D20">↑</button>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  componentDidMount() {
+    initPageTransitions();
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); revealObserver.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal, .reveal-img').forEach(el => { const r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('is-visible'); else revealObserver.observe(el); });
+    setTimeout(() => { document.querySelectorAll('.reveal, .reveal-img').forEach(el => el.classList.add('is-visible')); }, 2500);
+  }
+  renderVals() {
+    return {
+      ...this.state,
+      drawerClass: this.state.menuOpen ? 'mobile-drawer open' : 'mobile-drawer',
+      backdropClass: this.state.menuOpen ? 'mobile-drawer-backdrop open' : 'mobile-drawer-backdrop',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      scrollTop: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+    };
+  }
+}
+</script>
+</body>
+</html>

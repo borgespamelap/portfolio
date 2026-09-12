@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="icon" type="image/png" href="assets/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 </head>
@@ -26,6 +25,7 @@
   @media (max-width:768px){
     .reveal{transform:translateY(14px);}
     .reveal-img{transform:translateY(14px);}
+    .ctx-row{grid-template-columns:1fr !important; gap:8px !important; padding:32px 0 !important;}
   }
   .arrow-swap{position:relative; display:inline-block; width:1em; height:1em; vertical-align:middle; overflow:hidden;}
   .arrow-swap .a-diag, .arrow-swap .a-right{position:absolute; left:0; top:0; transition:opacity .25s ease-out, transform .25s ease-out;}
@@ -60,15 +60,23 @@
   .decision-row{display:grid; grid-template-columns:1.3fr 1fr auto; gap:40px; align-items:start; padding:40px 0;}
   @media (max-width:768px){
     .decision-row{grid-template-columns:1fr; gap:16px;}
-    .discovery-row{grid-template-columns:1fr; gap:24px;}
+    .discovery-row{grid-template-columns:1fr !important; gap:24px !important;}
     .container{padding-left:24px !important; padding-right:24px !important;}
     .block{padding-bottom:96px !important;}
     .meta-row{flex-direction:column; gap:32px;}
     .grid2, .grid3{grid-template-columns:1fr !important;}
+    .footer-nav-row{flex-wrap:nowrap !important; gap:12px !important;}
+    .footer-nav-row a{font-size:13px !important; gap:5px !important; white-space:nowrap;}
+  }
+  @media (max-width:768px) and (min-width:0px){
+    .discovery-row.achado-row{grid-template-columns:1.35fr 1fr !important; gap:20px !important;}
+    .discovery-row.achado-row .discovery-quote{font-size:19px !important; line-height:1.3 !important;}
+    .discovery-row.achado-row .body-txt{font-size:15px !important;}
   }
   @media (max-width:640px){
     .hero-composition{height:auto !important;}
-    .hero-composition .hero-img{position:relative !important; width:100% !important; top:auto !important; left:auto !important; right:auto !important; bottom:auto !important; margin-bottom:16px;}
+    .hero-composition .hero-img{display:none !important;}
+    .hero-img-mobile{display:block !important;}
   }
   @media (prefers-reduced-motion: reduce){
     .reveal, .reveal-img{transition:none !important; opacity:1 !important; transform:none !important; clip-path:none !important;}
@@ -121,6 +129,7 @@
       <img class="hero-img" src="assets/lacrei-hero-1.png" alt="Resultados de busca de profissionais na Lacrei Saúde" style="position:absolute; left:0; top:6%; width:58%; border:1px solid #14121018; border-radius:6px; box-shadow:0 24px 48px -12px #14121022; display:block;">
       <img class="hero-img" src="assets/lacrei-hero-3.png" alt="Formulário de identidade de gênero na Lacrei Saúde" style="position:absolute; right:2%; top:0; width:34%; border:1px solid #14121018; border-radius:6px; box-shadow:0 24px 48px -12px #14121022; display:block;">
       <img class="hero-img" src="assets/lacrei-hero-2.png" alt="Cadastro concluído na Lacrei Saúde" style="position:absolute; right:14%; bottom:0; width:40%; border:1px solid #14121018; border-radius:6px; box-shadow:0 24px 48px -12px #14121022; display:block;">
+      <img class="hero-img-mobile" src="assets/lacrei-hero-mobile.png" alt="Plataforma Lacrei Saúde exibida em notebook, com tela de cadastro concluído" style="display:none; width:100%; border-radius:8px;">
     </div>
   </div>
 
@@ -219,10 +228,10 @@
     <p class="body-txt">Os testes mostraram onde as jornadas ainda geravam dúvidas e onde a experiência podia melhorar. A partir desses achados, defini as principais recomendações para o produto.</p>
   </div>
   <div class="container block reveal">
-    <div class="discovery-row" style="grid-template-columns:1fr 1fr;">
+    <div class="discovery-row achado-row" style="grid-template-columns:1fr 1fr;">
       <div>
         <span class="small-txt" style="font-weight:700; color:#141210;">01</span>
-        <p style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(22px,2.6vw,30px); line-height:1.25; letter-spacing:-0.01em; margin:14px 0 0;">"Achei que já tinha terminado."</p>
+        <p style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(22px,2.6vw,30px); line-height:1.25; letter-spacing:-0.01em; margin:14px 0 0;" class="discovery-quote">"Achei que já tinha terminado."</p>
         <p style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(28px,3.6vw,40px); line-height:1; margin:24px 0 6px;">4/5</p>
         <p class="small-txt" style="font-size:15px;">profissionais acreditaram que haviam concluído o cadastro.</p>
       </div>
@@ -231,10 +240,10 @@
       </div>
     </div>
 
-    <div class="discovery-row" style="grid-template-columns:1fr 1fr;">
+    <div class="discovery-row achado-row" style="grid-template-columns:1fr 1fr;">
       <div>
         <span class="small-txt" style="font-weight:700; color:#141210;">02</span>
-        <p style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(22px,2.6vw,30px); line-height:1.25; letter-spacing:-0.01em; margin:14px 0 0;">"Isso não é comum em plataformas de saúde. Faz com que se sinta mais seguro na consulta."</p>
+        <p style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(22px,2.6vw,30px); line-height:1.25; letter-spacing:-0.01em; margin:14px 0 0;" class="discovery-quote">"Isso não é comum em plataformas de saúde. Faz com que se sinta mais seguro na consulta."</p>
         <p class="body-txt" style="font-size:16px; margin-top:14px;">Identidade de gênero e sexo atribuído ao nascimento apareciam misturados no formulário de cadastro.</p>
       </div>
       <div>
@@ -242,10 +251,10 @@
       </div>
     </div>
 
-    <div class="discovery-row" style="grid-template-columns:1fr 1fr;">
+    <div class="discovery-row achado-row" style="grid-template-columns:1fr 1fr;">
       <div>
         <span class="small-txt" style="font-weight:700; color:#141210;">03</span>
-        <p style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(22px,2.6vw,30px); line-height:1.25; letter-spacing:-0.01em; margin:14px 0 0;">"Se tiver prontuário, receituário digital, upload de exames... aí eu pagaria."</p>
+        <p style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(22px,2.6vw,30px); line-height:1.25; letter-spacing:-0.01em; margin:14px 0 0;" class="discovery-quote">"Se tiver prontuário, receituário digital, upload de exames... aí eu pagaria."</p>
       </div>
       <div style="display:flex; flex-wrap:wrap; gap:10px; align-content:flex-start;">
         <span class="small-txt" style="font-weight:700; color:#141210; border:1px solid #14121030; border-radius:20px; padding:8px 18px;">Prontuário</span>
@@ -301,6 +310,11 @@
       <div><span class="small-txt" style="font-weight:700; color:#8A8479;">02 · O método precisa acompanhar a pergunta</span><p class="small-txt" style="margin-top:10px; font-size:15px; line-height:1.6;">Nem toda pergunta se responde da mesma forma. Ao longo da pesquisa, percebi que escolher o método certo é tão importante quanto o que queremos descobrir.</p></div>
       <div><span class="small-txt" style="font-weight:700; color:#8A8479;">03 · Recrutamento também faz parte da pesquisa</span><p class="small-txt" style="margin-top:10px; font-size:15px; line-height:1.6;">Encontrar as pessoas certas e conseguir que elas participem também influencia a pesquisa. No meu caso, o recrutamento acabou sendo parte importante do próprio processo.</p></div>
     </div>
+  </div>
+
+  <div class="container reveal divider footer-nav-row" style="padding-bottom:80px; padding-top:40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;">
+    <a href="index.html#projetos" style="display:inline-flex; align-items:center; gap:8px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:16px; text-decoration:none; color:#141210;" style-hover="color:#5B564C"><span class="arrow-swap" style="transform:scaleX(-1);"><span class="a-diag">↗</span><span class="a-right">→</span></span>Voltar para projetos</a>
+    <a href="nopalco.html" style="display:inline-flex; align-items:center; gap:8px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:16px; text-decoration:none; color:#141210;" style-hover="color:#5B564C">Próximo projeto <span class="arrow-swap"><span class="a-diag">↗</span><span class="a-right">→</span></span></a>
   </div>
 
   <button onClick="{{ scrollTop }}" aria-label="Voltar ao topo" style="position:fixed; right:24px; bottom:24px; width:48px; height:48px; border-radius:50%; border:1px solid #14121030; background:#F5F1EA; color:#141210; font-size:18px; cursor:pointer; z-index:40; transition:border-color .2s ease-out, color .2s ease-out;" style-hover="border-color:#D92D20;color:#D92D20">↑</button>

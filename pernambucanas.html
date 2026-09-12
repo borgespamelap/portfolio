@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="icon" type="image/png" href="assets/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 </head>
@@ -26,6 +25,20 @@
   @media (max-width:768px){
     .reveal{transform:translateY(14px);}
     .reveal-img{transform:translateY(14px);}
+    .context-flow{display:flex !important; flex-wrap:nowrap !important; overflow-x:visible !important; gap:12px !important; max-width:100% !important; width:100% !important;}
+    .context-flow img{flex:1 1 0 !important; width:100% !important; min-width:0 !important; max-width:none !important; margin:0 !important;}
+    .context-flow > span{display:none !important;}
+    .img-compare{display:flex !important; flex-wrap:nowrap !important; overflow-x:visible !important; box-sizing:border-box !important; gap:12px !important; max-width:100% !important; width:100% !important; margin:32px 0 0 !important;}
+    .img-compare > img, .img-compare > div{flex:1 1 0 !important; width:100% !important; min-width:0 !important; max-width:none !important; box-sizing:border-box !important;}
+    .img-compare > div img{width:100% !important; min-width:0 !important;}
+    .img-compare.cart-compare{justify-content:flex-start !important; gap:16px !important;}
+    .img-compare.cart-compare > img{flex:0 0 145px !important; width:145px !important; max-width:145px !important; min-width:0 !important; height:auto !important;}
+    .discovery-row .mob-photo{display:flex !important; justify-content:center !important;}
+    .discovery-row .mob-photo img{margin:32px auto 0 !important;}
+    .footer-nav-row{flex-wrap:nowrap !important; gap:12px !important;}
+    .footer-nav-row a{font-size:13px !important; gap:5px !important; white-space:nowrap;}
+    .nowrap-desktop{white-space:normal !important; max-width:100% !important;}
+    .img-compare.cart-compare > img{flex:0 1 auto !important; width:calc(50% - 8px) !important; max-width:145px !important;}
   }
   .arrow-swap{position:relative; display:inline-block; width:1em; height:1em; vertical-align:middle; overflow:hidden;}
   .arrow-swap .a-diag, .arrow-swap .a-right{position:absolute; left:0; top:0; transition:opacity .25s ease-out, transform .25s ease-out;}
@@ -52,6 +65,7 @@
   .img-frame{width:100%; height:auto; display:block; background:#E7E1D6;}
   .meta-row{display:flex; gap:64px; flex-wrap:wrap;}
   .grid2{display:grid; grid-template-columns:repeat(2,1fr); gap:24px; align-items:start;}
+  .img-compare{display:grid; grid-template-columns:repeat(2,1fr); gap:24px; align-items:start;}
   .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start;}
   .stat-box{background:#EAE4D7; border:1px solid #14121015; border-radius:6px; padding:32px 28px;}
   .feature-title{font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(24px,3vw,34px); letter-spacing:-0.01em; margin:0;}
@@ -69,13 +83,13 @@
     .ctx-row{grid-template-columns:1fr !important; gap:8px !important; padding:36px 0 !important;}
     .priority-row{grid-template-columns:1fr !important; gap:8px !important; padding:20px 0 !important;}
     .priority-row > div{justify-content:flex-start !important;}
-    .flow-chain{flex-direction:column; align-items:flex-start !important;}
-    .flow-chain > span{transform:rotate(90deg); padding:4px 0 !important;}
-    .context-flow{grid-template-columns:1fr !important;}
-    .context-flow > span{transform:rotate(90deg); justify-self:center; padding:4px 0;}
+    .flow-chain{flex-direction:row !important; flex-wrap:wrap !important; align-items:center !important; gap:8px !important; row-gap:10px !important; max-width:100% !important;}
+    .flow-chain > div{padding:8px 12px !important; font-size:13px !important; white-space:normal !important; box-sizing:border-box !important;}
+    .flow-chain > span{transform:none !important; padding:0 2px !important; font-size:15px !important;}
+    .context-flow > span{display:none !important;}
     .scope-note{white-space:normal !important;}
-    .cep-imgs > div > div{height:auto !important; width:100% !important;}
-    .cep-imgs img{max-height:420px !important;}
+    .cep-imgs > div > div{height:170px !important; width:100% !important;}
+    .cep-imgs img{max-height:none !important; width:100% !important; height:100% !important; object-fit:contain !important;}
     .sec-title{font-size:clamp(28px,8vw,40px) !important;}
     .ctx-row{padding:32px 0 !important;}
     .token-table-desktop{display:none !important;}
@@ -83,6 +97,8 @@
     .comp-card{padding:20px !important;}
     .comp-card .comp-preview{padding:24px !important;}
     .comp-card .comp-preview img{max-width:100% !important;}
+    .token-table-mobile img{align-self:flex-start !important; width:auto !important; max-width:100% !important; height:28px !important; object-fit:contain !important;}
+    .delivery-steps > div > span{display:block !important; min-height:72px !important; font-size:16px !important; line-height:1.4 !important; margin-bottom:10px !important;}
   }
   .token-table-mobile{display:none; flex-direction:column; gap:0;}
   @media (prefers-reduced-motion: reduce){
@@ -193,11 +209,11 @@
       </div>
 
       <div class="grid2" style="margin-top:20px; align-items:start;">
-        <div style="max-width:80%;">
+        <div style="max-width:100%;">
           <span class="small-txt" style="font-weight:700; color:#141210;">03 · Interface e adaptação ao celular</span>
           <img style="width:100%; height:auto; display:block; margin-top:10px;" src="assets/pasted-1788286991999-0.png" alt="Review relatando problema de interface não se adaptar ao celular">
         </div>
-        <div style="max-width:80%;">
+        <div style="max-width:100%;">
           <span class="small-txt" style="font-weight:700; color:#141210;">04 · Busca e filtros</span>
           <img style="width:100%; height:auto; display:block; margin-top:10px;" src="assets/pasted-1788287006869-0.png" alt="Review relatando ausência de busca por tamanho">
         </div>
@@ -228,8 +244,8 @@
       <div class="discovery-row" style="border-top:1px solid #14121020; grid-template-columns:1fr; padding:32px 0;">
         <div>
           <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">02 · Duas páginas de carrinho na mesma jornada</span>
-          <p class="body-txt" style="font-size:16px; margin-top:0; max-width:none; white-space:nowrap;">A jornada apresentava duas páginas de carrinho diferentes: uma antes da verificação e outra depois dela, criando uma etapa adicional antes do&nbsp;checkout.</p>
-          <div class="grid2" style="margin-top:32px; align-items:start; max-width:480px; gap:16px;">
+          <p class="body-txt nowrap-desktop" style="font-size:16px; margin-top:0; max-width:none;">A jornada apresentava duas páginas de carrinho diferentes: uma antes da verificação e outra depois dela, criando uma etapa adicional antes do&nbsp;checkout.</p>
+          <div class="img-compare cart-compare" style="margin-top:32px; align-items:start; max-width:480px; gap:16px;">
             <img style="width:100%; height:auto; display:block; background:none;" src="assets/WhatsApp-Image-2026-08-16-at-10.53.36-2.png" alt="Carrinho lateral (drawer) do app Pernambucanas">
             <img style="width:100%; height:auto; display:block; background:none;" src="assets/WhatsApp-Image-2026-08-16-at-09.17.14-3-1.png" alt="Página de carrinho inteira do app Pernambucanas">
           </div>
@@ -237,15 +253,15 @@
       </div>
 
       <div class="discovery-row" style="border-bottom:1px solid #14121020; grid-template-columns:1fr 1fr; padding:32px 0;">
-        <div>
+        <div style="max-width:100%;">
           <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">03 · O aviso de indisponibilidade passa despercebido</span>
           <p class="body-txt" style="font-size:16px; margin-top:0;">A disponibilidade por CEP só é informada depois que o produto já está no carrinho, e o aviso não recebe destaque suficiente para chamar a atenção do&nbsp;usuário.</p>
-          <img style="width:100%; max-width:300px; height:auto; display:block; background:none; margin-top:32px;" src="assets/WhatsApp-Image-2026-08-16-at-10.52.26-1-648c1a40.png" alt="Aviso de item não entregável no CEP informado, exibido de forma discreta sobre o carrinho">
+          <div class="mob-photo"><img style="width:100%; max-width:300px; height:auto; display:block; background:none; margin-top:32px;" src="assets/WhatsApp-Image-2026-08-16-at-10.52.26-1-648c1a40.png" alt="Aviso de item não entregável no CEP informado, exibido de forma discreta sobre o carrinho"></div>
         </div>
         <div>
           <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">04 · A barra do sistema interfere na interface</span>
           <p class="body-txt" style="font-size:16px; margin-top:0;">A barra do sistema se sobrepõe a elementos da interface, encobrindo ações importantes e dificultando a interação do usuário com o&nbsp;aplicativo.</p>
-          <img style="width:100%; max-width:300px; height:auto; display:block; background:none; margin-top:32px;" src="assets/WhatsApp-Image-2026-08-16-at-10.57.29-1.png" alt="Botão Finalizar Compra sobreposto pela barra de navegação do sistema">
+          <div class="mob-photo"><img style="width:100%; max-width:300px; height:auto; display:block; background:none; margin-top:32px;" src="assets/WhatsApp-Image-2026-08-16-at-10.57.29-1.png" alt="Botão Finalizar Compra sobreposto pela barra de navegação do sistema"></div>
         </div>
       </div>
     </div>
@@ -335,7 +351,7 @@
 
       <div style="padding:40px 0; border-top:1px solid #14121020;">
         <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">02 · Perda de contexto</span>
-        <p class="body-txt" style="font-size:16px; margin-top:0; max-width:none; white-space:nowrap;">Para evitar a perda de contexto relatada pelos usuários, mantive a posição e os filtros da busca ao retornar.</p>
+        <p class="body-txt nowrap-desktop" style="font-size:16px; margin-top:0; max-width:none;">Para evitar a perda de contexto relatada pelos usuários, mantive a posição e os filtros da busca ao retornar.</p>
         <div class="context-flow" style="display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; gap:16px; margin-top:36px;">
           <img style="width:100%; height:auto; display:block; background:none;" src="assets/01.01-Listagem-de-produtos-4-.png" alt="Lista de produtos">
           <span style="font-size:36px; font-weight:700; color:#8A8479; line-height:1;">→</span>
@@ -349,7 +365,7 @@
         <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">03 · Disponibilidade por CEP</span>
         <p class="body-txt" style="font-size:16px; margin-top:0; max-width:700px;">Tornei a disponibilidade por CEP mais&nbsp;clara.</p>
 
-        <div class="grid3 cep-imgs" style="margin-top:36px; align-items:start;">
+        <div class="grid3 cep-imgs img-compare" style="margin-top:36px; align-items:start;">
           <div style="display:flex; flex-direction:column; align-items:flex-start;">
             <div style="height:680px; width:320px; max-width:100%; display:flex; align-items:flex-end; justify-content:center; overflow:hidden;">
               <img style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block; background:none;" src="assets/ProductCard-1-.png" alt="Card de produto exibindo indisponibilidade e opção de alterar CEP">
@@ -373,8 +389,8 @@
 
       <div style="padding:40px 0; border-top:1px solid #14121020; border-bottom:1px solid #14121020;">
         <span style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:20px; color:#141210; display:block; margin-bottom:10px;">04 · Área segura e ações importantes</span>
-        <p class="body-txt" style="font-size:16px; margin-top:0; max-width:none; white-space:nowrap;">O design passou a considerar a área reservada pelo sistema, mantendo ações importantes acessíveis.</p>
-        <div class="grid2" style="margin-top:36px; max-width:480px; gap:24px;">
+        <p class="body-txt nowrap-desktop" style="font-size:16px; margin-top:0; max-width:none;">O design passou a considerar a área reservada pelo sistema, mantendo ações importantes acessíveis.</p>
+        <div class="img-compare" style="margin-top:36px; max-width:480px; gap:24px;">
           <div>
             <span class="small-txt" style="font-weight:700; color:#141210;">ANTES</span>
             <img style="width:100%; height:auto; display:block; background:none; margin-top:12px;" src="assets/WhatsApp-Image-2026-08-16-at-10.57.29-1.png" alt="Antes: botão Finalizar Compra cortado pela barra de gestos do Android">
@@ -384,7 +400,7 @@
             <img style="width:100%; height:auto; display:block; background:none; margin-top:12px;" src="assets/03.01-Carrinho-com-produtos-3-.png" alt="Depois: botão Finalizar compra posicionado dentro da área segura">
           </div>
         </div>
-        <p class="small-txt" style="margin-top:20px; max-width:none; white-space:nowrap;">A área do sistema não é controlada pelo design, mas a solução evita que ações importantes fiquem encobertas.</p>
+        <p class="small-txt nowrap-desktop" style="margin-top:20px; max-width:none;">A área do sistema não é controlada pelo design, mas a solução evita que ações importantes fiquem encobertas.</p>
       </div>
     </div>
   </div>
@@ -529,7 +545,7 @@
     <p class="body-txt">Desenvolvi as telas para que cada produto tivesse suas próprias opções de entrega ou retirada, de acordo com o CEP&nbsp;informado.</p>
   </div>
   <div class="container block reveal" style="padding-top:40px;">
-    <div class="grid3" style="align-items:start;">
+    <div class="grid3 img-compare delivery-steps" style="align-items:start;">
       <div>
         <span class="small-txt" style="font-weight:700; color:#141210; display:block; margin-bottom:10px;">01 · Escolha por produto</span>
         <img style="width:100%; height:auto; display:block;" src="assets/Entrega.png" alt="Escolha entre receber em casa ou retirar na loja para o Produto 1, com Produto 2 aparecendo abaixo">
@@ -556,7 +572,7 @@
     </div>
   </div>
 
-  <div class="container reveal divider" style="padding-bottom:80px; padding-top:40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;">
+  <div class="container reveal divider footer-nav-row" style="padding-bottom:80px; padding-top:40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;">
     <a href="index.html#projetos" style="display:inline-flex; align-items:center; gap:8px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:16px; text-decoration:none; color:#141210;" style-hover="color:#5B564C"><span class="arrow-swap" style="transform:scaleX(-1);"><span class="a-diag">↗</span><span class="a-right">→</span></span>Voltar para projetos</a>
     <a href="lacrei-saude.html" style="display:inline-flex; align-items:center; gap:8px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:16px; text-decoration:none; color:#141210;" style-hover="color:#5B564C">Próximo projeto <span class="arrow-swap"><span class="a-diag">↗</span><span class="a-right">→</span></span></a>
   </div>

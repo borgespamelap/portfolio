@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="icon" type="image/png" href="assets/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 </head>
@@ -10,8 +9,8 @@
 <x-dc>
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,500&amp;display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&amp;display=swap" rel="stylesheet">
 <script src="./page-transitions.js"></script>
 <style>
   body{margin:0;background:#F5F1EA;}
@@ -47,7 +46,7 @@
   .block{padding-bottom:140px;}
   .eyebrow{font-family:'Satoshi',sans-serif; font-weight:600; color:#2A2620; font-size:17px; letter-spacing:0.03em; text-transform:uppercase; display:block;}
   .sec-title{font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(30px,4.4vw,50px); line-height:1.08; letter-spacing:-0.01em; margin:16px 0 0;}
-  .body-txt{font-family:'Plus Jakarta Sans',sans-serif; font-size:19px; line-height:1.6; color:#3A3630; margin:24px 0 0; max-width:940px;}
+  .body-txt{font-family:'Plus Jakarta Sans',sans-serif; font-size:19px; line-height:1.6; color:#3A3630; margin:24px 0 0; max-width:1040px; text-wrap:pretty;}
   .small-txt{font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; line-height:1.5; color:#8A8479; margin:0;}
   .img-frame{width:100%; height:auto; display:block; background:#E7E1D6;}
   .stat-num{font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(26px,3.4vw,40px); color:#141210; margin:0; line-height:1; white-space:nowrap;}
@@ -116,7 +115,7 @@
       </div>
     </button>
   </nav>
-  <div class="{{ backdropClass }}" onClick="{{ closeMenu }}"></div>
+  <div class="{{ backdropClass }}" onClick="{{ closeMenu }}" style="left: 14px; top: 11px; position: absolute"></div>
   <div class="{{ drawerClass }}">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:56px;">
       <div style="width:10px; height:10px; background:#5B564C;"></div>
@@ -125,7 +124,7 @@
     <div style="display:flex; flex-direction:column; gap:28px; flex:1;">
       <a class="drawer-link" href="index.html#projetos" style="display:flex; align-items:baseline; gap:14px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(26px,7vw,36px); color:#F5F1EA;"><span style="color:#5B564C; font-size:15px;">01</span>PROJETOS ↗</a>
       <a class="drawer-link" href="index.html#sobre" style="display:flex; align-items:baseline; gap:14px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(26px,7vw,36px); color:#F5F1EA;"><span style="color:#5B564C; font-size:15px;">02</span>SOBRE ↗</a>
-      <a class="drawer-link" href="contato.html" style="display:flex; align-items:baseline; gap:14px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(26px,7vw,36px); color:#F5F1EA;"><span style="color:#5B564C; font-size:15px;">03</span>CONTATO ↗</a>
+      <a class="drawer-link" href="Contato.dc.html" style="display:flex; align-items:baseline; gap:14px; font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(26px,7vw,36px); color:#F5F1EA;"><span style="color:#5B564C; font-size:15px;">03</span>CONTATO ↗</a>
     </div>
   </div>
 
@@ -142,12 +141,13 @@
     <div style="margin-top:56px;"><img class="img-frame" src="assets/nopalco-hero-new.png" alt="Capa do projeto No Palco"></div>
   </div>
 
-  <div class="container block reveal">
+  <div class="container block reveal" style="width: 1270px; height: 1485px">
     <div class="ctx-row" style="display:grid; grid-template-columns:28% 1fr; gap:0; align-items:start; padding:56px 0; border-top:1px solid #14121020;">
       <p style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:clamp(30px,3.2vw,38px); margin:0;">Contexto</p>
       <div>
-        <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(22px,2.6vw,30px); line-height:1.25; margin:0 0 16px;">Um mercado bilionário, mas ainda muito informal</p>
-        <p class="body-txt" style="margin-top:0; max-width:960px;">Artistas independentes ainda dependem muito de canais informais para divulgar o próprio trabalho e encontrar oportunidades. Sem um espaço adequado para apresentar seus projetos, fica mais difícil mostrar seu trabalho de forma profissional e alcançar novas oportunidades.</p>
+        
+        <div class="body-txt" style="margin-top:0; max-width:960px;"><p dir="auto" data-start="708" data-end="888" class="PDq2pG_selectionAnchorContainer">O mercado artístico reúne profissionais que precisam divulgar seu trabalho e encontrar novas oportunidades, e recrutadores que precisam descobrir talentos para diferentes projetos.<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+<p dir="auto" data-start="893" data-end="1072">Nesse cenário, o No Palco foi pensado como uma plataforma para aproximar esses dois públicos, reunindo descoberta de talentos, portfólios e contato profissional em um único lugar.</p></div>
         <div class="grid3" style="align-items:stretch; margin-top:32px;">
           <div class="stat-box" style="display:flex; flex-direction:column;"><p class="stat-num">R$ 217,4 bi</p><p class="small-txt" style="margin-top:10px;">economia criativa no Brasil</p></div>
           <div class="stat-box" style="display:flex; flex-direction:column;"><p class="stat-num">7,1 mi</p><p class="small-txt" style="margin-top:10px;">pessoas empregadas no setor</p></div>
@@ -158,86 +158,183 @@
 
     <div class="ctx-row" style="display:grid; grid-template-columns:28% 1fr; gap:0; align-items:start; padding:56px 0; border-top:1px solid #14121020;">
       <p style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:clamp(30px,3.2vw,38px); margin:0;">Meu papel</p>
-      <p class="body-txt" style="margin-top:0; max-width:640px;">Fiquei à frente da pesquisa, do planejamento e das entrevistas, além de organizar os principais achados para orientar as decisões do projeto. O design visual foi desenvolvido em conjunto com Maria Eduarda&nbsp;Vieira.</p>
+      <p class="body-txt" style="margin-top:0; max-width:640px;">Fiquei à frente da pesquisa, do planejamento e das entrevistas, além de organizar os principais achados para orientar as decisões do projeto. <br>O design visual foi desenvolvido em conjunto com Maria Eduarda&nbsp;Vieira.</p>
     </div>
 
     <div class="ctx-row" style="display:grid; grid-template-columns:28% 1fr; gap:0; align-items:start; padding:56px 0; border-top:1px solid #14121020; border-bottom:1px solid #14121020;">
-      <p style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:clamp(30px,3.2vw,38px); margin:0;">O desafio</p>
+      <p style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:clamp(30px,3.2vw,38px); margin:0;">Problema</p>
+      <p class="body-txt" style="margin-top:0; max-width:640px;">Artistas independentes tinham dificuldade para apresentar seu trabalho e encontrar oportunidades, enquanto recrutadores tinham dificuldade para descobrir e avaliar talentos de forma rápida e organizada.</p>
       <div>
-        <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(22px,2.6vw,30px); line-height:1.25; margin:0 0 16px;">O problema não era só encontrar vagas.</p>
-        <p class="body-txt" style="margin-top:0; max-width:640px;">A pesquisa mostrou que os artistas também tinham dificuldade para organizar e apresentar o próprio trabalho de forma profissional.</p>
+        
+        
         <div style="border-left:2px solid #8A8479; padding-left:20px; margin-top:32px; max-width:640px;">
-          <div class="small-txt" style="font-weight:700; color:#141210; margin-bottom:6px;">LIMITAÇÃO</div>
-          <p class="small-txt">O cronograma não permitiu entrevistar recrutadores. Por isso, a pesquisa ficou concentrada nos artistas, complementada por benchmarking e desk research para entender também o outro lado da relação.</p>
+          
+          
+        </div>
+      </div>
+    </div><div class="ctx-row" style="display:grid; grid-template-columns:28% 1fr; gap:0; align-items:start; padding:56px 0; border-top:1px solid #14121020; border-bottom:1px solid #14121020;">
+      <p style="font-family:'Satoshi',sans-serif; font-weight:500; font-size:clamp(30px,3.2vw,38px); margin:0;">Hipóteses</p>
+      <div>
+        <p class="body-txt" style="margin-top:0; max-width:640px;">Antes de conversar com os usuários, partimos de algumas hipóteses sobre as dificuldades enfrentadas por artistas e recrutadores.</p>
+        <div style="display:flex; flex-direction:column; gap:14px; margin-top:32px;">
+          <div style="display:grid; grid-template-columns:56px 1fr; align-items:center; gap:20px; background:#F0EBE0; border:1px solid #14121014; border-radius:8px; padding:16px 22px;">
+            <span style="font-family:'Satoshi',sans-serif; font-weight:800; font-size:15px; color:#8A8479;">H1</span>
+            <p style="font-size:15px; line-height:1.5; margin:0; color:#3A3630;">Artistas têm dificuldade para encontrar oportunidades relevantes.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:56px 1fr; align-items:center; gap:20px; background:#EEE9DE; border:1px solid #14121014; border-radius:8px; padding:16px 22px;">
+            <span style="font-family:'Satoshi',sans-serif; font-weight:800; font-size:15px; color:#8A8479;">H2</span>
+            <p style="font-size:15px; line-height:1.5; margin:0; color:#3A3630;">Artistas têm dificuldade para apresentar seu trabalho e alcançar recrutadores.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:56px 1fr; align-items:center; gap:20px; background:#F0EBE0; border:1px solid #14121014; border-radius:8px; padding:16px 22px;">
+            <span style="font-family:'Satoshi',sans-serif; font-weight:800; font-size:15px; color:#8A8479;">H3</span>
+            <p style="font-size:15px; line-height:1.5; margin:0; color:#3A3630;">Recrutadores têm dificuldade para encontrar talentos adequados aos seus projetos.</p>
+          </div>
+          <div style="display:grid; grid-template-columns:56px 1fr; align-items:center; gap:20px; background:#EEE9DE; border:1px solid #14121014; border-radius:8px; padding:16px 22px;">
+            <span style="font-family:'Satoshi',sans-serif; font-weight:800; font-size:15px; color:#8A8479;">H4</span>
+            <p style="font-size:15px; line-height:1.5; margin:0; color:#3A3630;">Reunir essas informações em uma plataforma especializada poderia facilitar a conexão entre os dois públicos.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="container intro reveal">
-    <h2 class="sec-title">O que descobrimos, e o que fizemos com isso</h2>
+  <div class="container intro reveal" style="width: 1272px; height: 257px">
+    <h2 class="sec-title">Pesquisa</h2>
     <p class="body-txt">Entrevistamos 4 artistas independentes para entender como divulgam seu trabalho hoje. Organizamos os relatos em um Diagrama de Afinidades e identificamos três padrões: rotina de trabalho, saúde mental e financeira, e barreiras do mercado informal.</p>
+  </div>
+  <div class="container reveal" style="padding-bottom: 64px; width: 1282px; height: 255px">
+    <p class="small-txt" style="font-weight:700; color:#141210; letter-spacing:0.04em;">COMO CONDUZIMOS</p>
+    
+    <div class="grid3" style="margin-top:28px;">
+      <div style="border: 1px solid #14121018; border-radius: 8px; padding: 20px 22px; background-color: #EEE9DE">
+        <p class="small-txt" style="font-weight:700; color:#8A8479;">ENTREVISTAS</p>
+        <p style="font-size:16px; margin:8px 0 0; color:#3A3630;">4 artistas independentes</p>
+      </div>
+      <div style="border: 1px solid #14121018; border-radius: 8px; padding: 20px 22px; background-color: #EEE9DE">
+        <p class="small-txt" style="font-weight:700; color:#8A8479;">ABORDAGEM</p>
+        <p style="font-size:16px; margin:8px 0 0; color:#3A3630;">Entrevistas qualitativas</p>
+      </div>
+      <div style="border: 1px solid #14121018; border-radius: 8px; padding: 20px 22px; background-color: #EEE9DE">
+        <p class="small-txt" style="font-weight:700; color:#8A8479;">ANÁLISE</p>
+        <p style="font-size:16px; margin:8px 0 0; color:#3A3630;">Diagrama de Afinidades</p>
+      </div>
+    </div>
+  </div>
+  <div class="container intro reveal" style="padding-top:0;">
+    <p class="small-txt" style="font-weight:700; color:#141210; letter-spacing:0.04em;">DIAGRAMA DE AFINIDADES</p>
+    
   </div>
   <div class="container reveal" style="padding-bottom:56px;">
     <img class="img-frame" src="assets/Projeto_-No-Palco.png" alt="Diagrama de afinidades da pesquisa">
   </div>
+
   <div class="container intro reveal">
-    <h2 class="sec-title" style="font-size:clamp(26px,3.4vw,38px);">Pesquisa → decisões de produto</h2>
-    <p class="body-txt" style="font-size:15px; color:#8A8479;">Os relatos revelaram três gargalos na rotina dos artistas: apresentar o portfólio, acompanhar o retorno das candidaturas e negociar o próprio cachê.</p>
+    <h2 class="sec-title">Persona</h2>
+    <p class="body-txt">A partir dos padrões identificados na pesquisa, criamos uma persona para representar o público e orientar as decisões de design.</p>
+  </div>
+  
+
+  <div class="container reveal" style="padding-bottom:56px;">
+    <div style="background: #141B2E; color: #F5F1EA; border-radius: 12px; overflow: hidden; display: grid; grid-template-columns: 280px 1fr; position: relative; width: 949px; height: 516px">
+      <div style="position: relative; min-height: 520px; width: 363px; height: 472px">
+        
+        
+        <div style="position:absolute; left:24px; bottom:24px;">
+          
+          
+        </div>
+      </div>
+      
+    <img src="assets/nopalco-persona-luna.png" alt="Luna Azevedo" style="position: absolute; inset: 0; width: 950px; height: 514px; object-fit: cover; object-position: 20% 15%; left: -2px; top: -1px"></div>
+  </div><div class="container intro reveal" style="width: 1280px; height: 160px">
+    <h2 class="sec-title" style="font-size:clamp(26px,3.4vw,38px);">O que descobrimos</h2>
+    <div class="body-txt" style="font-size: 15px; color: #8A8479; width: 974px; height: 45px; overflow: visible">A análise das entrevistas revelou alguns dos principais desafios enfrentados pelos artistas ao buscar oportunidades e apresentar seu trabalho.<blockquote data-start="574" data-end="718"><p dir="auto" data-start="576" data-end="718" class="PDq2pG_selectionAnchorContainer"><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+</blockquote>
+<p dir="auto" data-start="720" data-end="741"></p></div>
   </div>
   <div class="container block reveal">
-    <div style="display:flex; flex-direction:column;">
-      <div class="research-row" style="display:grid; grid-template-columns:1.85fr 1fr; gap:48px; padding:40px 0; border-top:1px solid #14121018;">
-        <div>
-          <span class="eyebrow" style="text-transform:none; font-size:15px;">01 · Portfólio</span>
-          <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(19px,2.2vw,24px); line-height:1.35; margin:16px 0 0;">"Cada pessoa pede de um jeito diferente: PDF, link, Instagram."</p>
-          <p class="small-txt" style="margin-top:20px;">O achado</p>
-          <p style="font-size:15px; margin:6px 0 0; color:#3A3630;">Organizar o portfólio era um dos maiores atritos da rotina.</p>
+    <div class="grid3" style="align-items:stretch;">
+      <div style="display: flex; flex-direction: column; width: 389px; height: 205px">
+        <span class="eyebrow" style="text-transform:none; font-size:15px;">01 · Portfólio</span>
+        <div style="border: 1px solid #C9D6E6; border-radius: 10px; padding: 24px 22px; margin-top: 16px; flex: 1; background-color: #EEE9DE; width: 335px; height: 77px; border-color: #D8C29F">
+          <p style="font-family: 'Satoshi',sans-serif; font-weight: 700; font-size: clamp(18px,2vw,21px); line-height: 1.35; margin: 0; color: #141210">"Cada pessoa pede de um jeito diferente: PDF, link, Instagram."</p>
         </div>
-        <div>
-          <p class="small-txt" style="margin-top:0;">Decisão</p>
-          <p style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(18px,1.9vw,21px); line-height:1.3; margin:6px 0 0;">Onboarding estruturado + upload + sugestões de IA.</p>
+        <p class="small-txt" style="margin-top: 20px; color: #988479">O achado</p>
+        <p style="font-size: 15px; margin: 6px 0 0; color: #3A3630; width: 319px; height: 41px">Organizar o portfólio era um dos maiores atritos da rotina.</p>
+      </div>
+      <div style="display:flex; flex-direction:column;">
+        <span class="eyebrow" style="text-transform:none; font-size:15px;">02 · Retorno das candidaturas</span>
+        <div style="border: 1px solid #EBDBAF; border-radius: 10px; padding: 24px 22px; margin-top: 16px; flex: 1; background-color: #EEE9DE; width: 339px; height: 65px; border-color: #D8C29F">
+          <p style="font-family: 'Satoshi',sans-serif; font-weight: 700; font-size: clamp(18px,2vw,21px); line-height: 1.35; margin: 0; color: #141210">"Uma agência me mandava só: 'Reprovado'."</p>
+        </div>
+        <p class="small-txt" style="margin-top: 20px; color: #988479">O achado</p>
+        <p style="font-size:15px; margin:6px 0 0; color:#3A3630;">A falta de retorno gerava insegurança.</p>
+      </div>
+      <div style="display:flex; flex-direction:column;">
+        <span class="eyebrow" style="text-transform:none; font-size:15px;">03 · Negociação</span>
+        <div style="border: 1px solid #E1C9DC; border-radius: 10px; padding: 24px 22px; margin-top: 16px; flex: 1; background-color: #EEE9DE; width: 299px; height: 81px; border-color: #D8C29F">
+          <p style="font-family: 'Satoshi',sans-serif; font-weight: 700; font-size: clamp(18px,2vw,21px); line-height: 1.35; margin: 0; color: #141210">"Pediam pro ator propor o próprio cachê."</p>
+        </div>
+        <p class="small-txt" style="margin-top: 20px; color: #988479">O achado</p>
+        <p style="font-size:15px; margin:6px 0 0; color:#3A3630;">Faltava estrutura para negociar.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container intro reveal" style="width: 1282px; height: 157px">
+    <h2 class="sec-title">O que fizemos com esses achados</h2>
+  </div>
+  <div class="container reveal" style="padding-bottom:56px;">
+    <div class="grid3" style="align-items:stretch;">
+      <div style="border:1px solid #14121018; border-radius:10px; overflow:hidden; display:flex; flex-direction:column;">
+        <div style="padding:32px 28px 24px; flex:1;">
+          <span class="eyebrow" style="text-transform:none; font-size:14px; color:#8A8479;">01 · Portfólio</span>
+          <p class="small-txt" style="margin-top:20px; color:#707070;">Descoberta</p>
+          <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:18px; line-height:1.4; margin:8px 0 0;">Portfólio era difícil de organizar</p>
+        </div>
+        <div style="background:#1F3A5F; padding:24px 28px;">
+          <p class="small-txt" style="color:#C7D2E0;">Decisão</p>
+          <p style="font-family:'Satoshi',sans-serif; font-weight:600; font-size:18px; line-height:1.4; margin:8px 0 0; color:#F5F1EA;">Onboarding estruturado + upload de portfólio</p>
         </div>
       </div>
-      <div class="research-row" style="display:grid; grid-template-columns:1.85fr 1fr; gap:48px; padding:40px 0; border-top:1px solid #14121018;">
-        <div>
-          <span class="eyebrow" style="text-transform:none; font-size:15px;">02 · Retorno das candidaturas</span>
-          <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(19px,2.2vw,24px); line-height:1.35; margin:16px 0 0;">"Uma agência me mandava só: 'Reprovado'."</p>
-          <p class="small-txt" style="margin-top:20px;">O achado</p>
-          <p style="font-size:15px; margin:6px 0 0; color:#3A3630;">A falta de retorno gerava insegurança.</p>
+      <div style="border:1px solid #14121018; border-radius:10px; overflow:hidden; display:flex; flex-direction:column;">
+        <div style="padding:32px 28px 24px; flex:1;">
+          <span class="eyebrow" style="text-transform:none; font-size:14px; color:#8A8479;">02 · Candidaturas</span>
+          <p class="small-txt" style="margin-top:20px; color:#707070;">Descoberta</p>
+          <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:18px; line-height:1.4; margin:8px 0 0;">Falta de retorno gerava insegurança</p>
         </div>
-        <div>
-          <p class="small-txt" style="margin-top:0;">Decisão</p>
-          <p style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(18px,1.9vw,21px); line-height:1.3; margin:6px 0 0;">Status da candidatura: Enviado → Visualizado → Selecionado.</p>
+        <div style="background:#1F3A5F; padding:24px 28px;">
+          <p class="small-txt" style="color:#C7D2E0;">Decisão</p>
+          <p style="font-family:'Satoshi',sans-serif; font-weight:600; font-size:18px; line-height:1.4; margin:8px 0 0; color:#F5F1EA;">Status da candidatura: Enviado → Visualizado → Selecionado</p>
         </div>
       </div>
-      <div class="research-row" style="display:grid; grid-template-columns:1.85fr 1fr; gap:48px; padding:40px 0; border-top:1px solid #14121018; border-bottom:1px solid #14121018;">
-        <div>
-          <span class="eyebrow" style="text-transform:none; font-size:15px;">03 · Negociação</span>
-          <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:clamp(19px,2.2vw,24px); line-height:1.35; margin:16px 0 0;">"Pediam pro ator propor o próprio cachê."</p>
-          <p class="small-txt" style="margin-top:20px;">O achado</p>
-          <p style="font-size:15px; margin:6px 0 0; color:#3A3630;">Faltava estrutura para negociar.</p>
+      <div style="border:1px solid #14121018; border-radius:10px; overflow:hidden; display:flex; flex-direction:column;">
+        <div style="padding:32px 28px 24px; flex:1;">
+          <span class="eyebrow" style="text-transform:none; font-size:14px; color:#8A8479;">03 · Negociação</span>
+          <p class="small-txt" style="margin-top:20px; color:#707070;">Descoberta</p>
+          <p style="font-family:'Satoshi',sans-serif; font-weight:700; font-size:18px; line-height:1.4; margin:8px 0 0;">Faltava estrutura para negociar</p>
         </div>
-        <div>
-          <p class="small-txt" style="margin-top:0;">Decisão</p>
-          <p style="font-family:'Satoshi',sans-serif; font-weight:900; font-size:clamp(18px,1.9vw,21px); line-height:1.3; margin:6px 0 0;">Chat com modelo de contrato e estimativa de cachê.</p>
+        <div style="background:#1F3A5F; padding:24px 28px;">
+          <p class="small-txt" style="color:#C7D2E0;">Decisão</p>
+          <p style="font-family:'Satoshi',sans-serif; font-weight:600; font-size:18px; line-height:1.4; margin:8px 0 0; color:#F5F1EA;">Chat com modelo de contrato e estimativa de cachê</p>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container intro reveal">
-    <h2 class="sec-title">Estrutura do produto</h2>
-    <p class="body-txt" style="margin-bottom:8px;">O benchmark de Backstage e Casting Networks revelou três padrões importantes: centralização, padronização e transparência.</p>
+    
+    
   </div>
   <div class="container intro reveal" style="padding-top:8px;">
-    <h2 class="sec-title">A jornada dentro do produto</h2>
-    <p class="body-txt">Mapeamos os principais caminhos de artistas e recrutadores para organizar a experiência.</p>
+    <h2 class="sec-title">User flow</h2>
+    <div class="body-txt">Com os principais problemas e necessidades definidos, estruturamos os fluxos para entender como artistas e recrutadores percorreriam as principais tarefas dentro da plataforma.<blockquote data-start="595" data-end="773"><p dir="auto" data-start="597" data-end="773" class="PDq2pG_selectionAnchorContainer"><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+</blockquote>
+<p dir="auto" data-start="775" data-end="803"></p></div>
   </div>
   <div class="container reveal" style="padding-bottom:56px;">
     <div style="padding:32px 0 8px;">
-      <div class="small-txt" style="font-weight:700; color:#141210; margin-bottom:4px;">USER FLOW</div>
-      <p class="small-txt" style="margin-bottom:24px;">Visão geral dos principais caminhos da experiência.</p>
+      
+      
       <img class="img-frame userflow-fade" style="background:none;" src="assets/Projeto_-No-Palco-3-6969c191.png" alt="User flow completo do No Palco">
     </div>
   </div>
@@ -277,19 +374,24 @@
   </div>
 
   <div class="container intro reveal">
-    <h2 class="sec-title">Estruturando a experiência</h2>
-    <p class="body-txt">Começamos com wireframes no papel para testar estrutura e hierarquia antes de avançar para a alta fidelidade.</p>
+    <h2 class="sec-title">Wireframes</h2>
+    <div class="body-txt">Com os fluxos definidos, começamos a estruturar as telas e organizar as informações antes de trabalhar na interface visual.<blockquote data-start="434" data-end="559"><p dir="auto" data-start="436" data-end="559" class="PDq2pG_selectionAnchorContainer"><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+</blockquote>
+<p dir="auto" data-start="561" data-end="619"></p></div>
   </div>
   <div class="container block reveal">
     <div class="grid2">
       <img class="img-frame" src="assets/Projeto_-No-Palco-4-.png" alt="Wireframes em papel: splash, login, criar conta, escolha de perfil">
       <img class="img-frame" src="assets/Projeto_-No-Palco-5-.png" alt="Wireframes em papel: personalização da candidatura, perfil, editar perfil">
-    </div>
+    </div><div class="small-txt" style="margin-top:10px;"><p dir="auto" data-start="1574" data-end="1637"><span data-start="1574" data-end="1637">Primeiras explorações de layout e hierarquia das informações.</span></p>
+<p dir="auto" data-start="1639" data-end="1786" data-is-last-node="" data-is-only-node=""></p></div>
   </div>
 
   <div class="container intro reveal">
-    <h2 class="sec-title">Uma plataforma para conectar talentos e oportunidades</h2>
-    <p class="body-txt">A solução centraliza perfil, portfólio, oportunidades e comunicação em uma única experiência, facilitando a apresentação dos artistas e a busca por talentos.</p>
+    <h2 class="sec-title">A solução</h2>
+    <div class="body-txt">A partir dos aprendizados da pesquisa, estruturamos uma plataforma que facilita a apresentação do trabalho, a descoberta de oportunidades e a conexão entre artistas e recrutadores.<blockquote data-start="521" data-end="703"><p dir="auto" data-start="523" data-end="703" class="PDq2pG_selectionAnchorContainer"><span aria-hidden="true" class="PDq2pG_selectionAnchor"></span></p>
+</blockquote>
+<p dir="auto" data-start="705" data-end="736"></p></div>
   </div>
 
   <div class="container block reveal">
@@ -391,7 +493,7 @@
   </div>
 
   <div class="container block reveal">
-    <a href="https://www.figma.com/proto/ij8N0tIDNnLBgPrLK6QTp4/No-Palco?node-id=76-2405&p=f&t=ezm6zrkJZFryC3gU-1&scaling=scale-down&content-scaling=fixed&page-id=2%3A314&starting-point-node-id=76%3A2405&show-proto-sidebar=1" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; font-family:'Satoshi',sans-serif; font-weight:600; font-size:16px; text-decoration:none; color:#141210; border:1px solid #14121040; border-radius:8px; padding:13px 22px; transition:border-color .2s ease-out, background .2s ease-out;" style-hover="border-color:#141210;background:#14121008">Ver protótipo <span class="arrow-swap"><span class="a-diag">↗</span><span class="a-right">→</span></span></a>
+    <a href="https://www.figma.com/proto/ij8N0tIDNnLBgPrLK6QTp4/No-Palco?node-id=76-2405&amp;p=f&amp;t=ezm6zrkJZFryC3gU-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=2%3A314&amp;starting-point-node-id=76%3A2405&amp;show-proto-sidebar=1" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; font-family:'Satoshi',sans-serif; font-weight:600; font-size:16px; text-decoration:none; color:#141210; border:1px solid #14121040; border-radius:8px; padding:13px 22px; transition:border-color .2s ease-out, background .2s ease-out;" style-hover="border-color:#141210;background:#14121008">Ver protótipo <span class="arrow-swap"><span class="a-diag">↗</span><span class="a-right">→</span></span></a>
   </div>
 
   <div class="container intro reveal">
